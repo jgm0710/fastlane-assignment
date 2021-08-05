@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,6 +34,7 @@ class MemberServiceTest extends BaseTest {
 
     @Test
     @DisplayName("회원 가입")
+    @Transactional
     public void signUp() {
         //given
         String loginId = "loginId";
@@ -47,7 +49,7 @@ class MemberServiceTest extends BaseTest {
 
         assertEquals(loginId, findMember.getLoginId());
         assertTrue(passwordEncoder.matches(password, findMember.getPassword()));
-        assertTrue(findMember.getRoleNames().contains(MemberRole.USER.name()),"회원 권한은 USER 이다.");
+        assertTrue(findMember.getRoles().contains(MemberRole.USER),"회원 권한은 USER 이다.");
     }
 
     @Test

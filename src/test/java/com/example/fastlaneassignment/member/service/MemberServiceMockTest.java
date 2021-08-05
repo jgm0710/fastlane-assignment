@@ -1,5 +1,6 @@
 package com.example.fastlaneassignment.member.service;
 
+import com.example.fastlaneassignment.auth.exception.RefreshTokenNotValidException;
 import com.example.fastlaneassignment.member.domain.Member;
 import com.example.fastlaneassignment.member.exception.LoginIdDuplicateException;
 import com.example.fastlaneassignment.member.exception.MemberNotFoundException;
@@ -40,7 +41,7 @@ class MemberServiceMockTest {
         //then
         assertThrows(MemberNotFoundException.class, () -> memberService.getMember(memberId));
         assertThrows(MemberNotFoundException.class, () -> memberService.getMember(loginId));
-        assertThrows(MemberNotFoundException.class, () -> memberService.getMemberByRefreshToken(refreshToken));
+        assertThrows(RefreshTokenNotValidException.class, () -> memberService.getMemberByRefreshToken(refreshToken));
 
     }
 

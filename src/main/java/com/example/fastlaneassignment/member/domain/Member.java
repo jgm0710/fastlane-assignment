@@ -16,6 +16,7 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_id")
     private Long id;
 
     @Column(unique = true)
@@ -23,7 +24,9 @@ public class Member {
 
     private String password;
 
-    @ElementCollection(fetch = FetchType.LAZY)
+    @ElementCollection(targetClass = MemberRole.class, fetch = FetchType.LAZY)
+    @CollectionTable(name = "member_role", joinColumns = @JoinColumn(name = "member_id"))
+    @Enumerated(EnumType.STRING)
     private Set<MemberRole> roles;
 
     @Embedded
@@ -85,5 +88,13 @@ public class Member {
 
     public RefreshInfo getRefreshInfo() {
         return refreshInfo;
+    }
+
+    public Set<MemberRole> getRoles() {
+        return roles;
+    }
+
+    public LocalDateTime getCreateDate() {
+        return createDate;
     }
 }
