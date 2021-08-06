@@ -1,6 +1,11 @@
 package com.example.fastlaneassignment.common;
 
-public class FailResponse <T> {
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@Getter
+public class FailResponse<T> {
 
     private String code;
 

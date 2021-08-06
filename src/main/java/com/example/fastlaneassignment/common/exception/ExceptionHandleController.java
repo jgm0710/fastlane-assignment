@@ -6,17 +6,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@ControllerAdvice
+@RestControllerAdvice
 @Slf4j
 public class ExceptionHandleController {
-
 
     @ExceptionHandler(BadRequestException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -54,7 +53,7 @@ public class ExceptionHandleController {
     }
 
     @ExceptionHandler(NotFoundException.class)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public FailResponse<?> notFoundExceptionHandling(NotFoundException ex) {
         String code = ex.getCode();
         String message = ex.getMessage();
@@ -67,7 +66,7 @@ public class ExceptionHandleController {
 
     @ExceptionHandler(ConflictException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    public FailResponse<?> conflictExceptionHandling(ConflictException ex) {
+    public FailResponse<Object> conflictExceptionHandling(ConflictException ex) {
         String code = ex.getCode();
         String message = ex.getMessage();
         log.error("Conflict exception occurs.");
@@ -78,6 +77,7 @@ public class ExceptionHandleController {
 
 
     @ExceptionHandler(ValidationHasErrorException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public FailResponse<List<ErrorsResponseDto>> validationHasErrorExceptionHandling(ValidationHasErrorException ex) {
         String code = ex.getCode();
         String message = ex.getMessage();
