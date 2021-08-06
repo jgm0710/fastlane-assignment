@@ -10,7 +10,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
-@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @Profile("web-mvc-test")
 public class TestSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override

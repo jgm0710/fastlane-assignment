@@ -22,3 +22,41 @@
 [[resources-auth]]
 = 인증 관련 리소스
 
+[[resources-sign-in]]
+== 로그인
+
+* `POST` `/api/auth/sign-in`
+
+* Response HTTP STATUS : `200 OK`
+
+* 추가 설명
+    ** 해당 리소스는 인증을 필요로 하지 않습니다.
+
+operation::sign-in-success[snippets='request-headers,request-fields,response-fields,curl-request,http-response']
+
+[[resources-sign-out]]
+== 로그아웃
+
+* `GET,POST` `/api/auth/sign-out`
+
+* Response HTTP STATUS : `No Content`
+
+* 추가 설명
+    ** 해당 리소스는 인증을 필요로 합니다.
+    ** 인증된 사용자의 refresh token 을 만료시킵니다.
+
+operation::sign-out-success[snippets='request-headers,curl-request,http-response']
+
+[[resources-refresh]]
+== 인증 토큰 재발급
+
+* `POST` `/api/auth/refresh`
+
+* Response HTTP STATUS : `200 OK`
+
+* 추가 설명
+    ** 해당 리소스는 인증을 필요로 하지 않습니다.
+
+operation::refresh-success[snippets='request-headers,request-fields,response-fields,curl-request,http-response']
+
+

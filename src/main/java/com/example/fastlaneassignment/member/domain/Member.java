@@ -36,12 +36,13 @@ public class Member {
     private LocalDateTime createDate;
 
     @Builder
-    public Member(Long id, String loginId, String password, Set<MemberRole> roles, RefreshInfo refreshInfo) {
+    public Member(Long id, String loginId, String password, Set<MemberRole> roles, RefreshInfo refreshInfo, LocalDateTime createDate) {
         this.id = id;
         this.loginId = loginId;
         this.password = password;
         this.roles = roles;
         this.refreshInfo = refreshInfo;
+        this.createDate = createDate;
     }
 
     public static Member createUser(String loginId, String password) {

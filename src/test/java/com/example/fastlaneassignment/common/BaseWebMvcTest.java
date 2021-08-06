@@ -21,7 +21,6 @@ import static org.springframework.restdocs.operation.preprocess.Preprocessors.pr
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
-@WebMvcTest
 @ExtendWith(value = {SpringExtension.class, RestDocumentationExtension.class, MockitoExtension.class})
 @ActiveProfiles("web-mvc-test")
 @Disabled
@@ -44,6 +43,14 @@ public abstract class BaseWebMvcTest {
                         .withResponseDefaults(prettyPrint()))
                 .build();
     }
+
+    protected final String JSON_CONTENT_TYPE_DESCRIPTION = "application/json;charset=UTF-8";
+
+    protected final String ACCESS_TOKEN_HEADER = "X-AUTH-TOKEN";
+
+    protected final String ACCESS_TOKEN_HEADER_DESCRIPTION = "Access Token 기입";
+
+    protected final String MOCK_JWT_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb2dpbklkIiwiaWQiOjEsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MjgyMzI4MDQsImV4cCI6MTYyODIzMzEwNH0.6oLUhwOABXmeJxHZEsUuWVHnFUvsrHCI_3yaNS0kZsk";
 
 
 }

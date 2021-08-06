@@ -25,5 +25,37 @@
 [[resources-sign-up]]
 == 회원 가입
 
-operation::sign-up-success[snippets='curl-request,http-response']
+* `POST` `/api/members/sign-up`
 
+* Response HTTP STATUS : `201 Created`
+
+* 추가 설명
+    ** 해당 리소스는 인증을 필요로 하지 않습니다.
+
+operation::sign-up-success[snippets='request-headers,request-fields,response-fields,curl-request,http-response']
+
+[[resources-update-password]]
+== 비밀번호 변경
+
+* `GET` `/api/members/{memberId}/passwords`
+
+* Response HTTP STATUS : `204 No Content`
+
+* 추가 설명
+    ** 해당 리소스는 인증을 필요로 합니다.
+    ** 다른 회원의 비밀번호는 변경할 수 없습니다.
+
+operation::update-password-success[snippets='request-headers,curl-request,http-response']
+
+[[resources-withdrawal]]
+== 회원 탈퇴
+
+* `DELETE` `/api/members/{memberId}`
+
+* Response HTTP STATUS : `204 No Content`
+
+* 추가 설명
+    ** 해당 리소스는 인증을 필요로 합니다.
+    ** 자기 자신만 탈퇴할 수 있습니다.
+
+operation::withdrawal-success[snippets='request-headers,curl-request,http-response']

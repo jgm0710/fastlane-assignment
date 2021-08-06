@@ -12,25 +12,25 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 public class AuthRestController {
 
-    private AuthApplicationService authApplicationService;
-
-    private MemberApplicationService memberApplicationService;
+    private final AuthApplicationService authApplicationService;
 
     @PostMapping("/api/auth/sign-in")
     @ResponseStatus(HttpStatus.OK)
     public TokenResponseDto signIn(
-            @RequestBody SignInRequestDto requestDto
+            @RequestBody @Valid SignInRequestDto requestDto
     ) {
         TokenDto tokenDto = authApplicationService.signIn(requestDto.toServiceDto());
 
         return TokenResponseDto.of(tokenDto);
     }
 
-    @GetMapping("/api/auth/sign-out")
+    @RequestMapping(value = "/api/auth/sign-out", method = {RequestMethod.GET, RequestMethod.POST})
     @PreAuthorize("hasRole('ROLE_USER')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void signOut(
@@ -42,7 +42,7 @@ public class AuthRestController {
     @PostMapping("/api/auth/refresh")
     @ResponseStatus(HttpStatus.OK)
     public TokenResponseDto refresh(
-            @RequestBody OnlyRefreshTokenRequestDto requestDto
+            @RequestBody @Valid OnlyRefreshTokenRequestDto requestDto
     ) {
         TokenDto tokenDto = authApplicationService.refresh(requestDto.getRefreshToken());
 
