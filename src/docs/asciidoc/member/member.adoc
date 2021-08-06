@@ -1,0 +1,29 @@
+= FastLane Assignment API Guide
+정구민;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+:operation-curl-request-title: Example request
+:operation-http-response-title: Example response
+:docinfo: shared-head
+
+[[overview]]
+= 개요
+== link:/docs/index.html[home]
+== 오류 코드
+
+|===
+| 발생 API | CAUSE | HTTP_STATUS |CODE | MESSAGE
+|===
+
+[[resources-member]]
+= 회원 관련 리소스
+
+[[resources-sign-up]]
+== 회원 가입
+
+operation::sign-up-success[snippets='curl-request,http-response']
+
