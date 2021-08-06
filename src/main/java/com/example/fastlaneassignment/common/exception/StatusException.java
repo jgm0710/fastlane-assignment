@@ -15,4 +15,8 @@ public class StatusException extends RuntimeException{
         super(message);
         this.code = responseCode.getCode();
     }
+
+    public String getCode() {
+        return code;
+    }
 }

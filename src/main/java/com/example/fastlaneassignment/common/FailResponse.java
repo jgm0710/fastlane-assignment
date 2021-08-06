@@ -13,4 +13,10 @@ public class FailResponse <T> {
         this.data = data;
         this.message = responseCode.getMessage();
     }
+
+    public FailResponse(String code, T data, String message) {
+        this.code = code;
+        this.data = data;
+        this.message = message;
+    }
 }
