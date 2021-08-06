@@ -24,6 +24,7 @@ public enum ResponseCode implements EnumType{
      */
     UNAUTHORIZED("CM001", "인증되지 않은 사용자 입니다.", "Access Token 을 통한 인증이 통과되지 않은 회원인 경우"),
     FORBIDDEN("CM002", "해당 리소스에 접근 권한이 없는 사용자 입니다.", "인증은 되었으나, 리소스에 접근할 권한이 없는 회원인 경우"),
+    NOT_VALID("CM003", "요청 시 기입 사항이 올바르게 기입되지 않았습니다.", "API 요청 시 Parameter 나 RequestBody 를 통해 들어오는 값이 지정한 규칙에 맞지 않는 경우"),
     ;
 
     private final String code;

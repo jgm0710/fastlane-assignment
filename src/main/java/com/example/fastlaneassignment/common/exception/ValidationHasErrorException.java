@@ -7,13 +7,8 @@ public class ValidationHasErrorException extends BadRequestException{
 
     private Errors errors;
 
-    public ValidationHasErrorException(ResponseCode responseCode, Errors errors) {
-        super(responseCode);
-        this.errors = errors;
-    }
-
-    public ValidationHasErrorException(ResponseCode responseCode, String message, Errors errors) {
-        super(responseCode, message);
+    public ValidationHasErrorException(Errors errors) {
+        super(ResponseCode.NOT_VALID);
         this.errors = errors;
     }
 
