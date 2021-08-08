@@ -5,6 +5,7 @@ import com.example.fastlaneassignment.auth.api.dto.SignInRequestDto;
 import com.example.fastlaneassignment.auth.service.AuthApplicationService;
 import com.example.fastlaneassignment.auth.service.dto.TokenDto;
 import com.example.fastlaneassignment.common.BaseWebMvcTest;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -68,6 +69,52 @@ class AuthRestControllerTest extends BaseWebMvcTest {
                         requestFields(
                                 fieldWithPath("loginId").type(STRING).description("로그인 ID"),
                                 fieldWithPath("password").type(STRING).description("비밀번호")
+                        ),
+                        responseFields(
+                                fieldWithPath("memberId").type(NUMBER).description("인증된 회원 식별 ID"),
+                                fieldWithPath("accessToken").type(STRING).description("인증 토큰"),
+                                fieldWithPath("accessTokenValidSeconds").type(NUMBER).description("인증 토큰 유효 시간 (초)"),
+                                fieldWithPath("refreshToken").type(STRING).description("인증 토큰 재발급을 위한 refresh token"),
+                                fieldWithPath("refreshTokenValidSeconds").type(NUMBER).description("refresh token 유효 시간 (초)")
+                        )
+                ))
+        ;
+
+    }
+
+    @Test
+    @DisplayName("관리자 권한 사용자 로그인")
+    public void signIn_Admin() throws Exception {
+        SignInRequestDto signInRequestDto = new SignInRequestDto("fastlaneAdmin", "fastlaneAdmin");
+
+        TokenDto tokenDto = TokenDto.builder()
+                .memberId(1L)
+                .accessToken(MOCK_JWT_TOKEN)
+                .accessTokenValidSeconds(3000)
+                .refreshToken(UUID.randomUUID().toString())
+                .refreshTokenValidSeconds(TimeUnit.DAYS.toSeconds(14))
+                .build();
+
+        given(authApplicationService.signIn(signInRequestDto.toServiceDto())).willReturn(tokenDto);
+
+        //when
+        ResultActions perform = mockMvc.perform(
+                post("/api/auth/sign-in")
+                        .contentType(APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(signInRequestDto))
+        ).andDo(print());
+
+        //then
+        perform
+                .andExpect(status().isOk())
+                .andDo(document(
+                        "admin-sign-in-success",
+                        requestHeaders(
+                                headerWithName(CONTENT_TYPE).description(JSON_CONTENT_TYPE_DESCRIPTION)
+                        ),
+                        requestFields(
+                                fieldWithPath("loginId").type(STRING).description("관리자 로그인 ID"),
+                                fieldWithPath("password").type(STRING).description("관리자 비밀번호")
                         ),
                         responseFields(
                                 fieldWithPath("memberId").type(NUMBER).description("인증된 회원 식별 ID"),

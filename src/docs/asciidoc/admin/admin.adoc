@@ -1,0 +1,56 @@
+= FastLane Assignment API Guide
+정구민;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+:operation-curl-request-title: Example request
+:operation-http-response-title: Example response
+:docinfo: shared-head
+
+[[overview]]
+= 개요
+== link:/docs/index.html[home]
+== 오류 코드
+
+|===
+| 발생 API | CAUSE | HTTP_STATUS |CODE | MESSAGE
+|===
+
+
+[[resources-admin]]
+= 관리자 권한 리소스
+
+[[resources-admin-sign-in]]
+== 관리자 권한 사용자 로그인
+
+* `POST` `/api/auth/sign-in`
+
+* Response HTTP STATUS : `200 OK`
+
+* 계정
+    ** loginId : fastlaneAdmin
+    ** password : fastlaneAdmin
+
+* 추가 설명
+** 관리자 권한을 가진 사용자 계정으로 로그인합니다.
+** 반드지 정해진 loginId, password 를 통해 로그인 해야 합니다.
+** 로그인 결과로 얻어지는 access token 을 통해 관리자 권한 리소스에 접근할 수 있습니다.
+
+operation::admin-sign-in-success[snippets='request-headers,request-fields,response-fields,curl-request,http-response']
+
+[[resources-find-member-list-by-admin]]
+== 관리자 권한으로 회원 목록 조회
+
+* `GET` `/api/admin/members`
+
+* Response HTTP STATUS : `200 OK`
+
+* 추가 설명
+** 해당 리소스는 인증을 필요로 합니다.
+*** 관리자 권한의 access token 을 통해 접근 가능합니다.
+** 회원 목록을 조회합니다.
+
+operation::find-member-list-by-admin[snippets='request-headers,response-fields,curl-request,http-response']

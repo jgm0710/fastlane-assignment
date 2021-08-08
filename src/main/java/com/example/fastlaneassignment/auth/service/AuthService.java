@@ -6,6 +6,7 @@ import com.example.fastlaneassignment.auth.exception.PasswordMismatchException;
 import com.example.fastlaneassignment.auth.service.dto.TokenDto;
 import com.example.fastlaneassignment.config.SecurityJwtProperties;
 import com.example.fastlaneassignment.member.domain.Member;
+import com.example.fastlaneassignment.member.domain.RefreshInfo;
 import com.example.fastlaneassignment.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -50,8 +51,11 @@ public class AuthService {
 
     private String initRefreshToken(Member member) {
         while (true) {
-            String refreshToken= member.initRefreshToken(jwtProperties.getRefreshTokenValidDays());
+            RefreshInfo refreshInfo = RefreshInfo.init(jwtProperties.getRefreshTokenValidDays());
+            String refreshToken = refreshInfo.getRefreshToken();
+
             if (memberRepository.findByRefreshInfoRefreshToken(refreshToken).isEmpty()) {
+                member.setRefreshInfo(refreshInfo);
                 return refreshToken;
             }
         }

@@ -74,11 +74,6 @@ public class Member {
         return password;
     }
 
-    public String initRefreshToken(int refreshTokenValidDays) {
-        this.refreshInfo = RefreshInfo.init(refreshTokenValidDays);
-        return this.refreshInfo.getRefreshToken();
-    }
-
     public void expireRefreshToken() {
         this.refreshInfo = null;
     }
@@ -97,5 +92,9 @@ public class Member {
 
     public LocalDateTime getCreateDate() {
         return createDate;
+    }
+
+    public void setRefreshInfo(RefreshInfo refreshInfo) {
+        this.refreshInfo = refreshInfo;
     }
 }

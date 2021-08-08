@@ -78,4 +78,8 @@
 
 == link:/docs/index.html[0. home]
 
-== link:/docs/authentication.html[1. 회원 인증 관리]
+== link:/docs/auth/auth.html[1. 회원 인증]
+
+== link:/docs/member/member.html[2. 회원]
+
+== link:/docs/admin/admin.html[2. 관리자 권한 리소스]

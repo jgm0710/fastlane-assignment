@@ -84,8 +84,8 @@ public class JwtTokenProvider {
 
     private List<GrantedAuthority> getAuthorities(String token) {
         Claims claims = getClaims(token);
-
-        String[] authorities = claims.get(AUTHORITIES_KEY).toString().split(",");
+        String authoritiesString = claims.get(AUTHORITIES_KEY).toString();
+        String[] authorities = authoritiesString.substring(1, authoritiesString.length() - 1).split(", ");
 
         return Arrays.stream(authorities).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }

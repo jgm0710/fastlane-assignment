@@ -1,9 +1,12 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:13306/fastlane?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/fastlane?serverTimezone=UTC&characterEncoding=UTF-8
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: fastlane
     password: fastlane
+
+  flyway:
+    enabled: false
 
   jpa:
     hibernate:
@@ -23,6 +26,6 @@ logging:
 
 security:
   jwt:
-    access-token-valid-seconds: 300
+    access-token-valid-seconds: 30000
     refresh-token-valid-days: 14
     secret-key: wovnzviowtjghgaf1927zg1
