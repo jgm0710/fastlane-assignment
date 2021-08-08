@@ -23,6 +23,6 @@ logging:
 
 security:
   jwt:
-    access-token-valid-seconds: 30000
+    access-token-valid-seconds: 300
     refresh-token-valid-days: 14
     secret-key: wovnzviowtjghgaf1927zg1
