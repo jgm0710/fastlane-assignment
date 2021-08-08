@@ -81,7 +81,7 @@ operation::sign-up-success[snippets='request-headers,request-fields,response-fie
 [[resources-update-password]]
 == 비밀번호 변경
 
-* `GET` `/api/members/{memberId}/passwords`
+* `PUT` `/api/members/{memberId}/passwords`
 
 * Response HTTP STATUS : `204 No Content`
 
