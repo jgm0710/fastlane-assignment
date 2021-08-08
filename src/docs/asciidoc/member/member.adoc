@@ -17,6 +17,50 @@
 
 |===
 | 발생 API | CAUSE | HTTP_STATUS |CODE | MESSAGE
+
+| <<resources-update-password>>
+| 비밀번호가 틀렸을 경우
+| 400
+| AT001
+| 비밀번호가 틀렸습니다.
+
+| <<resources-update-password>> / <<resources-withdrawal>>
+| 다른 회원의 리소스를 조작하는 경우
+| 403
+| AT002
+| 다른 회원의 리소스는 조작할 수 없습니다.
+
+| <<resources-update-password>> / <<resources-withdrawal>>
+| Access Token 을 통해 인증되지 않은 회원인 경우
+| 401
+| CM001
+| 인증되지 않은 사용자 입니다.
+
+| <<resources-update-password>> / <<resources-withdrawal>>
+| 인증은 되었으나, 리소스에 접근할 권한이 없는 회원인 경우
+| 403
+| CM002
+| 해당 리소스에 접근 권한이 없는 사용자 입니다.
+
+| <<resources-admin-sign-in>> / <<resources-update-password>>
+| API 요청 시 Parameter 나 RequestBody 를 통해 들어오는 값이 지정한 규칙에 맞지 않는 경우
+| 400
+| CM003
+| 요청 시 기입 사항이 올바르게 기입되지 않았습니다.
+
+| <<resources-update-password>> / <<resources-withdrawal>>
+| 회원을 찾을 수 없는 경우
+| 404
+| M001
+| 회원을 찾을 수 없습니다.
+
+| <<resources-sign-up>>
+| 로그인 ID 가 중복되는 경우
+| 409
+| M002
+| 해당 로그인 ID 로 가입된 회원이 이미 존재합니다.
+
+
 |===
 
 [[resources-member]]
@@ -45,7 +89,7 @@ operation::sign-up-success[snippets='request-headers,request-fields,response-fie
     ** 해당 리소스는 인증을 필요로 합니다.
     ** 다른 회원의 비밀번호는 변경할 수 없습니다.
 
-operation::update-password-success[snippets='request-headers,curl-request,http-response']
+operation::update-password-success[snippets='request-headers,request-fields,curl-request,http-response']
 
 [[resources-withdrawal]]
 == 회원 탈퇴
