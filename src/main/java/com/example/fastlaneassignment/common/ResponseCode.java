@@ -3,7 +3,7 @@ package com.example.fastlaneassignment.common;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public enum ResponseCode implements EnumType{
+public enum ResponseCode {
 
     /**
      * authentication
@@ -39,7 +39,6 @@ public enum ResponseCode implements EnumType{
         return message;
     }
 
-    @Override
     public String getDescription() {
         return description;
     }
