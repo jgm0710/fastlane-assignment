@@ -17,6 +17,31 @@
 
 |===
 | 발생 API | CAUSE | HTTP_STATUS |CODE | MESSAGE
+
+| <<resources-admin-sign-in>>
+| 비밀번호가 틀렸을 경우
+| 400
+| AT001
+| 비밀번호가 틀렸습니다.
+
+| <<resources-admin-sign-in>>
+| 회원을 찾을 수 없는 경우
+| 404
+| M001
+| 회원을 찾을 수 없습니다.
+
+| <<resources-find-member-list-by-admin>>
+| Access Token 을 통해 인증되지 않은 회원인 경우
+| 401
+| CM001
+| 인증되지 않은 사용자 입니다.
+
+| <<resources-find-member-list-by-admin>>
+| 인증은 되었으나, 리소스에 접근할 권한이 없는 회원인 경우
+| 403
+| CM002
+| 해당 리소스에 접근 권한이 없는 사용자 입니다.
+
 |===
 
 

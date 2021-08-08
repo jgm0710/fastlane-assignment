@@ -5,12 +5,9 @@ spring:
     username: fastlane
     password: fastlane
 
-  flyway:
-    enabled: false
-
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
     properties:
       hibernate:
         format_sql: true  #Jpa show-sql 시 나오는 쿼리를 정렬해서 출력
